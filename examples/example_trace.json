@@ -1,0 +1,79 @@
+{
+  "id": "trace-abc-123",
+  "name": "process_ticket_TICKET-001",
+  "timestamp": "2024-11-26T10:00:00Z",
+  "endTime": "2024-11-26T10:05:00Z",
+  "metadata": {
+    "ticket_id": "TICKET-001",
+    "customer_id": "user@example.com",
+    "model": "claude-3-opus-20240229"
+  },
+  "tags": ["customer_support", "TICKET-001"],
+  "input": "I can't log into my account",
+  "observations": [
+    {
+      "id": "obs-1",
+      "name": "iteration_1",
+      "type": "span",
+      "startTime": "2024-11-26T10:00:10Z",
+      "endTime": "2024-11-26T10:01:00Z",
+      "input": {},
+      "output": {},
+      "level": "DEFAULT"
+    },
+    {
+      "id": "obs-2",
+      "name": "classify_ticket",
+      "type": "span",
+      "startTime": "2024-11-26T10:00:15Z",
+      "endTime": "2024-11-26T10:00:20Z",
+      "input": {
+        "ticket_text": "I can't log into my account"
+      },
+      "output": {
+        "category": "account",
+        "confidence": 0.85,
+        "urgency": "normal"
+      },
+      "level": "DEFAULT",
+      "metadata": {}
+    },
+    {
+      "id": "obs-3",
+      "name": "search_knowledge_base",
+      "type": "span",
+      "startTime": "2024-11-26T10:01:15Z",
+      "endTime": "2024-11-26T10:01:25Z",
+      "input": {
+        "category": "account",
+        "query": "login issues"
+      },
+      "output": {
+        "found": true,
+        "results": [
+          {
+            "article": "Password reset links are valid for 24 hours",
+            "relevance": 0.8
+          }
+        ]
+      },
+      "level": "DEFAULT"
+    },
+    {
+      "id": "obs-4",
+      "name": "generate_response",
+      "type": "span",
+      "startTime": "2024-11-26T10:02:00Z",
+      "endTime": "2024-11-26T10:02:10Z",
+      "input": {
+        "message": "Here's how to reset your password...",
+        "include_knowledge_base_links": true
+      },
+      "output": {
+        "message": "Here's how to reset your password...",
+        "sent": true
+      },
+      "level": "DEFAULT"
+    }
+  ]
+}
